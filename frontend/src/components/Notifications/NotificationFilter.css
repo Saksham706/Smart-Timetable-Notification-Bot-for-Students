@@ -1,0 +1,30 @@
+.notification-filter {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.filter-label {
+  font-weight: 600;
+  color: #1e293b;
+  min-width: 110px;
+}
+
+.filter-select {
+  padding: 0.4rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  font-size: 1rem;
+  color: #334155;
+  cursor: pointer;
+  min-width: 200px;
+  transition: border-color 0.2s ease;
+}
+
+.filter-select:hover,
+.filter-select:focus {
+  border-color: #3b82f6;
+  outline: none;
+}

@@ -1,0 +1,22 @@
+.recent-activity {
+  margin-top: 2rem;
+}
+
+.recent-activity h2 {
+  font-size: 1.5rem;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.notification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.recent-activity p {
+  color: #64748b;
+  font-style: italic;
+  font-size: 1rem;
+  padding: 1rem 0;
+}
