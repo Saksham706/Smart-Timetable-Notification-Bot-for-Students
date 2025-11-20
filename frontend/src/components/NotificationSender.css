@@ -4,6 +4,20 @@
   background: #1f2937; /* dark background */
   min-height: calc(100vh - 80px);
 }
+input[type="file"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.attachment-link {
+  color: #007bff;
+  text-decoration: underline;
+  font-size: 14px;
+  margin-top: 6px;
+  display: inline-block;
+}
 
 .sender-card {
   background: #111827; /* dark card */

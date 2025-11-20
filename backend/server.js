@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import connectDB from './config/db.js';
+import path from "path";
 
 // Routes
 import authRoutes from './routes/authRoutes.js';
@@ -33,7 +34,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
-
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

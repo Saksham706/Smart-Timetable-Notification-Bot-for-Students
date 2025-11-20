@@ -9,6 +9,8 @@ import {
 } from '../controllers/notificationController.js';
 import { protect } from '../middlewares/authMiddleware.js';
 import { onlyAdminOrTeacher } from '../middlewares/roleMiddleware.js';
+import { upload } from '../middlewares/uploadMiddleware.js';
+
 
 const router = express.Router();
 
@@ -37,5 +39,7 @@ router.put('/:id/read', protect, markAsRead);
 
 // Delete notification by ID
 router.delete('/:id', protect, deleteNotification);
+
+router.post("/sends", protect,onlyAdminOrTeacher,upload.single("attachment"),sendNotification);
 
 export default router;

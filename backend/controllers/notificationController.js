@@ -1,58 +1,76 @@
 import Notification from '../models/Notification.js';
 import User from '../models/User.js';
 import { notifyClass } from '../utils/notificationHelper.js';
+import { sendEmail } from "../utils/emailSender.js";
 
 export const sendNotification = async (req, res) => {
   try {
     const { title, message, targetClass, type, sentByName } = req.body;
 
-    // ✅ Validate
-    if (!title || !message || !targetClass) {
-      console.error('❌ Missing required fields');
-      return res.status(400).json({
-        success: false,
-        message: 'Please provide title, message, and targetClass'
-      });
+    // ------------------------------
+    // 1. FIX: Attachment URL creation
+    // ------------------------------
+    let attachmentURL = null;
+
+    if (req.file) {
+      attachmentURL = `${process.env.BACKEND_URL}/uploads/notifications/${req.file.filename}`;
+      console.log("Attachment URL => ", attachmentURL);
     }
 
+    // ---------------------------------------------------
+    // 2. Send notification inside system (database + class)
+    // ---------------------------------------------------
+    await notifyClass(
+      targetClass,
+      title,
+      `[${sentByName || req.user.name}] ${message}`,
+      type,
+      attachmentURL
+    );
 
-    // ✅ Send to all students in target class using notifyClass utility
-    try {
-      await notifyClass(
-        targetClass,
-        title,
-        `[${sentByName || req.user.name}] ${message}`,
-        type || 'general'
-      );
-    } catch (notifyError) {
-      console.error('⚠️ Error notifying class:', notifyError);
-      // Don't fail - notification might already be created
-    }
-
-    // ✅ Create a log/record of the notification sent
+    // -------------------------------
+    // 3. Save notification for sender
+    // -------------------------------
     const notificationRecord = new Notification({
       recipient: req.user._id,
-      title: `[${req.user.role.toUpperCase()}] ${title}`,
-      message: `To ${targetClass}: ${message}`,
-      type: type || 'general',
-      read: false
+      title,
+      message,
+      type,
+      attachment: attachmentURL
     });
 
     await notificationRecord.save();
 
+    // -------------------------
+    // 4. Email all students
+    // -------------------------
+    const students = await User.find({ class: targetClass });
 
+    for (const student of students) {
+      await sendEmail(
+        student.email,
+        `New Notification: ${title}`,
+        `
+          <h3>${title}</h3>
+          <p>${message}</p>
+          ${attachmentURL ? `<a href="${attachmentURL}">Download Attachment</a>` : ""}
+        `,
+        attachmentURL   // <-- Add this
+      );
+    }
+
+    // -------------------------
+    // 5. Send response to admin
+    // -------------------------
     res.status(201).json({
       success: true,
-      message: `✅ Notification sent to ${targetClass}!`,
+      message: "Notification sent successfully",
       data: notificationRecord
     });
 
   } catch (error) {
-    console.error('🔴 Error sending notification:', error);
-    res.status(500).json({
-      success: false,
-      message: error.message || 'Error sending notification'
-    });
+    console.log("Error Sending Notification:", error);
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 

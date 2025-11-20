@@ -17,13 +17,17 @@ const notificationSchema = new mongoose.Schema(
     },
     type: {
       type: String,
-      enum: ['class_scheduled', 'class_cancelled', 'class_rescheduled', 'seminar', 'exam', 'event', 'general'],
+      enum: ['assignment','announcement','exam','urgent','general'],
       default: 'general'
     },
     read: {
       type: Boolean,
       default: false
-    }
+    },
+    attachment: {
+    type: String,
+    default: null
+  }
   },
   { timestamps: true }
 );

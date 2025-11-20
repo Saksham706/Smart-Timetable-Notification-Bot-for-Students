@@ -185,7 +185,7 @@ const EventManager = () => {
     try {
       const url = editingEvent
         ? `${API_URL}/api/events/${editingEvent._id}`
-        : '${API_URL}/api/events';
+        : `${API_URL}/api/events`;
 
       const method = editingEvent ? 'PUT' : 'POST';
 
