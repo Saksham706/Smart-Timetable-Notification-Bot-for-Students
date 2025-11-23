@@ -9,6 +9,7 @@ The **Smart Timetable & Notification Bot** is a modern MERN-based system designe
 
 Teachers can upload schedules or make changes, and students receive **instant alerts**, reducing confusion and improving time management. With **optional AI-powered features**, this system transforms campus scheduling into a smooth, automated experience.
 
+ Live Demo Link - https://smart-table-frontend.vercel.app/
 ---
 
 ## ✨ Features
@@ -113,11 +114,11 @@ Classroom availability checker
 Contributions are welcome!
 Feel free to open issues or submit pull requests.
 ---
-##📝 License
+## 📝 License
 
 This project is licensed under the MIT License.
 ---
-##❤️ Acknowledgements
+## ❤️ Acknowledgements
 
 Thanks to all contributors, mentors, and open-source libraries that made this system possible.
 ---
