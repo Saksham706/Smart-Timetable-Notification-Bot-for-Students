@@ -70,10 +70,10 @@ Teachers can upload schedules or make changes, and students receive **instant al
 ┗ README.md
 
 ## 🖥️ Screenshots  
-<img width="1853" height="838" alt="Screenshot (914)" src="https://github.com/user-attachments/assets/5755726c-26b3-437b-84a2-e51aae032aa5" />
-<img width="1864" height="840" alt="Screenshot (915)" src="https://github.com/user-attachments/assets/3b7c0018-a28d-4db2-9971-6c7505ce8e58" />
-<img width="808" height="848" alt="Screenshot (916)" src="https://github.com/user-attachments/assets/fc3261a6-e165-42f1-9761-44d721fefdc5" />
-<img width="1857" height="851" alt="Screenshot (917)" src="https://github.com/user-attachments/assets/b95dc7ef-2f30-4df1-ab6b-b66faeb5b6e7" />
+<img width="850" height="388" alt="Screenshot (924)" src="https://github.com/user-attachments/assets/66c3c91b-3c56-49b4-9db7-957f7e42c374" />
+<img width="850" height="381" alt="Screenshot (925)" src="https://github.com/user-attachments/assets/87a7e108-be43-411f-9436-c3b4392c2431" />
+
+**
 
 
 ---
